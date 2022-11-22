@@ -1,14 +1,11 @@
 import { Buildings, Globe, MagnifyingGlass, MapPin, Moon, SunDim, TwitterLogo } from "phosphor-react"
 import { useEffect, useState } from "react"
-import { ButtonChangeDarkOrLight } from "./components/ButtonChangeDarkOrLight"
 import { useTheme } from "./hooks/useTheme"
 import { joinedDate } from "./utils/FormatData"
 
 
 function App() {
     const {theme, setTheme} = useTheme()
-    const [empty, setEmpty] = useState(false)
-    const [notFound, setNotFound] = useState(false)
     const [searchUser, setSearchUser] = useState('octocat')
 
     const [user, setUser] = useState({
@@ -29,34 +26,33 @@ function App() {
     function handleSubmit(e){
         e.preventDefault();
         fetchUser(searchUser)
-        
     }
 
-        async function fetchUser(username){
-            const response = await fetch(`https://api.github.com/users/${username}`)
-            const data = await response.json()
+    async function fetchUser(username){
+        const response = await fetch(`https://api.github.com/users/${username}`)
+        const data = await response.json()
 
-            setUser({
-                avatar: data.avatar_url,
-                name: data.name,
-                joinedAt: joinedDate(data.created_at),
-                login: data.login,
-                bio: data.bio,
-                repos: data.public_repos,
-                followers: data.followers,
-                following: data.following,
-                location: data.location,
-                twitter: data.twitter_username,
-                company: data.company,
-                blog: data.blog,
-            })
+        setUser({
+            avatar: data.avatar_url,
+            name: data.name,
+            joinedAt: joinedDate(data.created_at),
+            login: data.login,
+            bio: data.bio,
+            repos: data.public_repos,
+            followers: data.followers,
+            following: data.following,
+            location: data.location,
+            twitter: data.twitter_username,
+            company: data.company,
+            blog: data.blog,
+        })
 
-            console.log(data)
-        }
+        console.log(data)
+    }
     
-        useEffect(()=> {
-            fetchUser(searchUser)
-          },[])
+    useEffect(()=> {
+        fetchUser(searchUser)
+    },[])
         
 
 
