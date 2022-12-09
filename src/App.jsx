@@ -7,6 +7,7 @@ import { joinedDate } from "./utils/FormatData"
 function App() {
     const {theme, setTheme} = useTheme()
     const [searchUser, setSearchUser] = useState('octocat')
+    const [error, setError] = useState('')
 
     const [user, setUser] = useState({
         avatar: '',
@@ -23,7 +24,13 @@ function App() {
         blog: '',
     })
 
+
     function handleSubmit(e){
+        // if (searchUser.current.value === ''){
+        //     setError('Enter User')
+        //     return false
+        // }
+        // setError('')
         e.preventDefault();
         fetchUser(searchUser)
     }
@@ -58,7 +65,7 @@ function App() {
 
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center">
-      <div className="w-[730px] mb-6 flex justify-between items-center">
+      <div className="md:w-[730px] w-[320px] mb-6 flex justify-between items-center">
         <div className="text-2xl font-bold text-[#222731] dark:text-white">devfinder</div>
         <div>
             {theme === "light" ? (
@@ -77,65 +84,63 @@ function App() {
         </div>
       </div>
 
-      <form className="w-[730px] h-[69px] flex items-center justify-between bg-white dark:bg-[#1f2a48] rounded-2xl" onSubmit={handleSubmit}   >
+      <form className="md:w-[730px] md:h-[69px] w-[330px] h-14 flex items-center justify-between bg-white dark:bg-[#1f2a48] rounded-2xl" onSubmit={handleSubmit}   >
           <div className="h-full flex items-center gap-4" >
               <MagnifyingGlass 
                 size={32} 
-                className="ml-9" 
+                className="md:ml-9 ml-4" 
                 color="#2272c9" 
                 
               />
               <input 
-                className="h-full w-[500px] outline-none text-lg text-[#4b6a9b] bg-white dark:bg-[#1f2a48] placeholder:text-[#4b6a9b] placeholder:opacity-80 "
-                type="text" 
+                className="h-full md:w-[500px] w-40 outline-none text-lg text-[#4b6a9b] bg-white dark:bg-[#1f2a48] placeholder:text-[#4b6a9b] placeholder:opacity-80 md:placeholder:text-base placeholder:text-xs "
+                type="text"
                 placeholder="Search Github username..." 
                 onChange={event => setSearchUser(event.target.value)}
-                
-                
-                
               />
+              <span className="text-red-600">{error}</span>
           </div>
-          <button type="submit" className="w-[106px] h-[50px] rounded-xl mr-4  text-white bg-[#0079ff] hover:bg-blue-600"  >
+          <button type="submit" className="md:w-[100px] md:h-[50px] w-16 h-10 rounded-xl mr-4  text-white md:text-lg text-sm bg-[#0079ff] hover:bg-blue-600"  >
             Search
           </button>
       </form>
 
-      <div className="w-[730px] h-[419px] flex flex-col items-center bg-white dark:bg-[#1f2a48] rounded-2xl mt-5">
-        <div className=" w-[650px] mt-7 flex items-center justify-between">
+      <div className="md:w-[730px] w-[330px] h-[419px]  flex flex-col items-center bg-white dark:bg-[#1f2a48] rounded-2xl mt-5">
+        <div className=" md:w-[650px] w-[269px] mt-7 flex items-center justify-between">
             <div>
                 <img 
                     src={user.avatar} 
                     alt="Imagem do perfil do Github"
-                    className="w-28 h-28 rounded-full"
+                    className="md:w-28 w-56 rounded-full"
                 />
             </div>
-            <div className=" w-[480px] h-full relative">
-                <div className="text-3xl font-bold text-[#2b3442] dark:text-white">{user.name}</div>
-                <div className="mt-1 text-blue-600">
+            <div className=" w-[480px] h-full relative ml-4">
+                <div className="md:text-3xl text-xl font-bold text-[#2b3442] dark:text-white">{user.name}</div>
+                <div className="md:mt-1 text-blue-600 md:text-base text-sm">
                     <a href={`https://github.com/${user.login}`} target="_blank">@{user.login}</a>
                 </div>
-                <div className="absolute right-0 top-1 text-[#697c9a] dark:text-white">{user.joinedAt || "joined"}</div>
+                <div className="md:absolute md:text-base text-sm right-0 top-1 text-[#697c9a] dark:text-white">{user.joinedAt}</div>
             </div>
         </div>
 
-        <div className="w-[650px] flex flex-col items-end">
+        <div className="md:w-[650px] flex flex-col md:items-end items-center">
             <div className="w-[480px] h-6 -mt-5 mb-7 dark:text-white">{user.bio}</div>
 
-            <div className="w-[480px] h-[85px] flex items-center justify-around bg-[#f6f8ff] dark:bg-[#141c2f] dark:text-white rounded-xl">
+            <div className="md:w-[480px] w-[300px] h-[85px] flex items-center justify-around bg-[#f6f8ff] dark:bg-[#141c2f] dark:text-white rounded-xl">
                 <div>
                     <div>Repos</div>
-                    <div className="text-xl font-bold">{user.repos}</div>
+                    <div className="md:text-xl text-lg font-bold">{user.repos}</div>
                 </div>
                 <div>
                     <div>Followers</div>
-                    <div className="text-xl font-bold">{user.followers}</div>
+                    <div className="md:text-xl text-lg font-bold">{user.followers}</div>
                 </div>
                 <div>
                     <div>Following</div>
-                    <div className="text-xl font-bold">{user.following}</div>
+                    <div className="md:text-xl text-lg font-bold">{user.following}</div>
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-y-3 w-[480px] mt-7 text-base dark:text-white">
+            <div className="grid md:grid-cols-2 gap-y-4 md:w-[480px] w-[300px] mt-7 text-base dark:text-white">
                 <div className="flex items-center gap-4">
                     <MapPin size={24} weight="fill" />
                     <p>{user.location || "not available"}</p>
