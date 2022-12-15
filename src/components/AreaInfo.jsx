@@ -28,7 +28,7 @@ function AreaInfo({user}) {
       </div>
 
       <div className="md:w-[650px] flex flex-col md:items-end items-center">
-        <div className=" md:w-[480px] md:-mt-5 mb-4 mx-8 mt-5 dark:text-white">
+        <div className=" md:w-[480px] md:-mt-5 md:mx-0 mb-4 mx-8 mt-5 dark:text-white">
           {user.bio}
         </div>
 
