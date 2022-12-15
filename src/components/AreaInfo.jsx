@@ -3,7 +3,7 @@ import { Buildings, Globe, MapPin, TwitterLogo } from "phosphor-react";
 
 function AreaInfo({user}) {
   return (
-    <div className="md:w-[730px] w-[350px] md:h-[450px] h-[480px]  flex flex-col items-center bg-white dark:bg-[#1f2a48] rounded-2xl mt-5">
+    <div className="md:w-[730px] w-[350px] md:h-[450px] h-[500px]  flex flex-col items-center bg-white dark:bg-[#1f2a48] rounded-2xl">
       <div className=" md:w-[650px] w-[269px] mt-7 flex items-center justify-between">
         <div>
           <img
@@ -28,7 +28,7 @@ function AreaInfo({user}) {
       </div>
 
       <div className="md:w-[650px] flex flex-col md:items-end items-center">
-        <div className="md:w-[480px] h-6 md:-mt-5 mb-10 mt-5 dark:text-white">
+        <div className=" md:w-[480px] md:-mt-5 mb-4 mx-8 mt-5 dark:text-white">
           {user.bio}
         </div>
 
@@ -46,7 +46,7 @@ function AreaInfo({user}) {
             <div className="md:text-xl text-lg font-bold">{user.following}</div>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-y-4 md:w-[480px] w-[300px] mt-7 text-base dark:text-white">
+        <div className="grid md:grid-cols-2 gap-y-4 md:w-[480px] w-[300px] mt-5 text-base dark:text-white">
           <div className="flex items-center gap-4">
             <MapPin size={24} weight="fill" />
             <p>{user.location || "not available"}</p>
