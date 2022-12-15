@@ -3,7 +3,7 @@ import { Buildings, Globe, MapPin, TwitterLogo } from "phosphor-react";
 
 function AreaInfo({user}) {
   return (
-    <div className="md:w-[730px] w-[350px] md:h-[400px] h-[480px]  flex flex-col items-center bg-white dark:bg-[#1f2a48] rounded-2xl mt-5">
+    <div className="md:w-[730px] w-[350px] md:h-[450px] h-[480px]  flex flex-col items-center bg-white dark:bg-[#1f2a48] rounded-2xl mt-5">
       <div className=" md:w-[650px] w-[269px] mt-7 flex items-center justify-between">
         <div>
           <img
@@ -28,7 +28,7 @@ function AreaInfo({user}) {
       </div>
 
       <div className="md:w-[650px] flex flex-col md:items-end items-center">
-        <div className="md:w-[480px] h-6 md:-mt-5 mb-7 mt-5 dark:text-white">
+        <div className="md:w-[480px] h-6 md:-mt-5 mb-10 mt-5 dark:text-white">
           {user.bio}
         </div>
 
